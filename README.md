@@ -3,9 +3,12 @@ Solution for BrightMindes Java Assignment
 
 {Run}
 1-	download the project. 
+
 2-	use the import service in Eclipse IDE.
+
 3-	press Ctrl+shift+R then enter application.properties change the location of the MS access DB 
      spring.datasource.url=jdbc:ucanaccess://{path of the db}
+     
 4-	change the value of spring.jpa.hibernate.ddl-auto from none to update.
 5-	open the DB and insert the user and admin in the user table and their encrypted password.  
      user: $2a$04$GeWJbAympUa5S.EnQ1rFHuq.lQWJMbh3ukKdWYtCVrfZKkJoZ6vGm
