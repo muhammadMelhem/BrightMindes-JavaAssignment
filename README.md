@@ -24,7 +24,7 @@ Solution for BrightMindes Java Assignment
 
 8-	make maven clean update. 
 
-9-	open the browser inter address http://localhost:8080/
+9-	open the browser enter address http://localhost:8080/
 
 10-	enter the user Authentication and then submit.
 
