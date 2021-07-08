@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="LOGS" value="./logs" />
+
+	<appender name="Console"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern> %d [%level] %c{1.} [%t] %m%n </Pattern>
+		</layout>
+	</appender>
+
+	<appender name="RollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS}/brightMinds-javaTest-logger.log</file>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern> %d [%level] %c{1.} [%t] %m%n </Pattern>
+		</encoder>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOGS}/archived/brightMinds-javaTest-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>500MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="RollingFile" />
+		<appender-ref ref="Console" />
+	</root>
+	<appender name="PrintedLogs"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS}/printedLogss.log</file>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern> %d [%level] %c{1.} [%t] %m%n </Pattern>
+		</encoder>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOGS}/archived/PrintedLogs-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>500MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<logger name="com.brightMinds.javaTest" level="trace"
+		additivity="false">
+		<appender-ref ref="PrintedLogs" />
+		<appender-ref ref="Console" />
+	</logger>
+
+
+</configuration>
