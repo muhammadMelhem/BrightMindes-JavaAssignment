@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.brightMinds.javaTest.Repository.UserRepository;
-import com.brightMinds.javaTest.model.Authority;
+import com.brightMinds.javaTest.model.Role;
  
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -27,9 +27,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      	com.brightMinds.javaTest.model.User appUser = 
                  userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
 		
-     List grantList = new ArrayList();
-    for (Authority authority: appUser.getAuthority()) {
-         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getAuthority());
+     List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
+    for (Role role: appUser.getRole()) {
+         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
             grantList.add(grantedAuthority);
     }
 		

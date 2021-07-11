@@ -33,7 +33,7 @@ public class StatementServiceImp implements StatementService {
 		if (!fromDate.equals("1970-01-01") && !fromAmount.equals("-1.1")) {
 
 			statements = applyDateFilters(statementsWithDateRange, fromDate, toDate);
-			statements = applyAmountFilters(statementsWithDateRange, fromAmount, toAmount);
+			statements = applyAmountFilters(statements, fromAmount, toAmount);
 
 		} else if (!fromDate.equals("1970-01-01") && fromAmount.equals("-1.1")) {
 			statements = applyDateFilters(statementsWithDateRange, fromDate, toDate);
@@ -98,11 +98,7 @@ public class StatementServiceImp implements StatementService {
 
 		List<Statement> filteredStatments = statments.parallelStream().filter(statment -> {
 			try {
-				return DateUtill
-						.convertDatePattern(statment.getDateField(), ApplicationConstants.DATE_PATTERN, "yyyy-MM-dd")
-						.after(fDate)
-						&& DateUtill.convertDatePattern(statment.getDateField(), ApplicationConstants.DATE_PATTERN,
-								"yyyy-MM-dd").before(tDate);
+				return checkDates(fDate, tDate, statment.getDateField());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -123,6 +119,16 @@ public class StatementServiceImp implements StatementService {
 		}).collect(Collectors.toList());
 
 		return filteredStatments;
+
+	}
+
+	private boolean checkDates(Date fromDate, Date toDate, String date) throws ParseException {
+
+		return (DateUtill.convertDatePattern(date, ApplicationConstants.DATE_PATTERN, "yyyy-MM-dd").after(fromDate)
+				|| DateUtill.convertDatePattern(date, ApplicationConstants.DATE_PATTERN, "yyyy-MM-dd").equals(fromDate))
+				&& (DateUtill.convertDatePattern(date, ApplicationConstants.DATE_PATTERN, "yyyy-MM-dd").before(toDate)
+						|| DateUtill.convertDatePattern(date, ApplicationConstants.DATE_PATTERN, "yyyy-MM-dd")
+								.equals(toDate));
 
 	}
 
