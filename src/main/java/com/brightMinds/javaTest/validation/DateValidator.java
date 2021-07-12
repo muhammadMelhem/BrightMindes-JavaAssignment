@@ -1,5 +1,6 @@
 package com.brightMinds.javaTest.validation;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,6 +35,14 @@ class DateValidator implements ConstraintValidator<CheckDate, String> {
 		}
 
 		return true;
- 
+
+//		DateFormat sdf = new SimpleDateFormat(ApplicationConstants.DATE_PATTERN);
+//		sdf.setLenient(false);
+//		try {
+//			sdf.parse(value);
+//		} catch (ParseException e) {
+//			return false;
+//		}
+//		return true;
 	}
 }
