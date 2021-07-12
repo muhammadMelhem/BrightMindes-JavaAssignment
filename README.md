@@ -18,9 +18,9 @@ Solution for BrightMindes Java Assignment
      
      admin: $2a$04$O8i5pQyCHdYkpzB8G3OCL.4IbEnpejUJ8bEQtmAI1UKYsyZdJhXhW
      
-6-	insert in authority table ADMIN and USER.
+6-	insert in role table ADMIN and USER.
 
-7-	link in authorities_users table the users with their authorities.
+7-	link in role_users table the users with their roles.
 
 8-	make maven clean update. 
 
