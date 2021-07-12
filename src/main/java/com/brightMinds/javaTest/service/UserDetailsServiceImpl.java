@@ -28,8 +28,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				.orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
 
 		List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
-		for (Role authority : appUser.getRole()) {
-			GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getRole());
+		for (Role role : appUser.getRole()) {
+			GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
 			grantList.add(grantedAuthority);
 		}
 
